@@ -1,15 +1,24 @@
 let exchangeAgain = true;
 
 while(exchangeAgain) {
-
-  let getExchangeableCurrency = prompt('Write currency for exchange (like USD/EUR/JPY/UAH/BYN)', ''); 
-  let getAmount = prompt('Write currency amount for exchange', '');
-  let getNeededCurrency = prompt('Write needed currency (like USD/EUR/JPY/UAH/BYN)', '');
-  
-  let num1 = 0,
+  let getExchangeableCurrency, getAmount, getNeededCurrency;
+  let num1 = 0, 
       num2 = 0;
+  let currencyNames = 'USD/EUR/JPY/UAH/BYN';
 
-  switch(getExchangeableCurrency) {
+  do {
+    getExchangeableCurrency = prompt('Write currency for exchange (like USD/EUR/JPY/UAH/BYN)', ''); 
+  } while (!getExchangeableCurrency || !currencyNames.includes(getExchangeableCurrency.toUpperCase()))
+
+  do {
+    getAmount = prompt('Write currency amount for exchange', '');
+  } while (!getAmount || isNaN(getAmount))
+
+  do {
+    getNeededCurrency = prompt('Write needed currency (like USD/EUR/JPY/UAH/BYN)', ''); 
+  } while (!getNeededCurrency || !currencyNames.includes(getNeededCurrency.toUpperCase()))
+
+  switch(getExchangeableCurrency.toUpperCase()) {
     case 'USD':
       num1 = 26.9059;
       break;
@@ -26,7 +35,7 @@ while(exchangeAgain) {
       num1 = 11.1606;
   }
 
-  switch(getNeededCurrency) {
+  switch(getNeededCurrency.toUpperCase()) {
     case 'USD':
       num2 = 26.9059;
       break;
@@ -46,8 +55,7 @@ while(exchangeAgain) {
 
   let result = num1 * getAmount / num2;
     
-  alert(result.toFixed(2));
+  alert(`${getAmount} ${getExchangeableCurrency} exchanged to ${result.toFixed(2)} ${getNeededCurrency}`);
 
-  exchangeAgain = confirm('Exchange currency again?');
-  
+  exchangeAgain = confirm('Exchange currency again?');  
 }
