@@ -12,7 +12,7 @@ while(exchangeAgain) {
 
   do {
     getAmount = prompt('Write currency amount for exchange', '');
-  } while (!getAmount || isNaN(getAmount))
+  } while (!getAmount || isNaN(getAmount) || (getAmount <= 0))
 
   do {
     getNeededCurrency = prompt('Write needed currency (like USD/EUR/JPY/UAH/BYN)', ''); 
