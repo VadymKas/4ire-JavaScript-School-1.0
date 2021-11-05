@@ -2,7 +2,7 @@ let getData = prompt('Write needed data (like f1,f2,n)', '');
 
 function fibonacciNums(f1 = 0, f2 = 0, n = 0) {
   if (n == 0) { 
-    alert(f2);    
+    alert(f1);    
   } else if (n > 0) {     
     for (let i = 3; i <= n; i++) {
       let f3 = f1 + f2;
