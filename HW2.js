@@ -20,4 +20,4 @@ function fibonacciNums(f1, f2, n) {
   }
 }
 
-fibonacciNums(+getData.split(',')[0], +getData.split(',')[1], +getData.split(',')[2]);
+fibonacciNums(+getData.split(',')[0], +getData.split(',')[1], +getData.split(',')[2]); 
