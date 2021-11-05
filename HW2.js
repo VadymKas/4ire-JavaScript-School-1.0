@@ -1,6 +1,6 @@
 let getData = prompt('Write needed data (like f1,f2,n)', '');
 
-function fibonacciNums(f1, f2, n) {
+function fibonacciNums(f1 = 0, f2 = 0, n = 0) {
   if (n == 0) { 
     alert(f2);    
   } else if (n > 0) {     
