@@ -1,3 +1,5 @@
+let getData = prompt('Write needed data (like f1,f2,n)', '');
+
 function fibonacciNums(f1, f2, n) {
   if (n == 0) { 
     alert(f2);    
@@ -17,3 +19,5 @@ function fibonacciNums(f1, f2, n) {
     alert(f1);
   }
 }
+
+fibonacciNums(+getData.split(',')[0], +getData.split(',')[1], +getData.split(',')[2]);
