@@ -1,7 +1,13 @@
-let getData = prompt('Write needed data (like f1,f2,n)', '');
+let getData;
+
+do {
+  getData = prompt('Write needed data (like f1,f2,n)', '');
+} while (!Number.isFinite(+getData.split(',')[0]) || !Number.isFinite(+getData.split(',')[1]) || !Number.isFinite(+getData.split(',')[2]))
 
 function fibonacciNums(f1 = 0, f2 = 0, n = 0) {
-  if (n == 0) { 
+  if (n == 0) {
+    alert(0);	  
+  } else if (n == 1) { 
     alert(f1);    
   } else if (n > 0) {     
     for (let i = 3; i <= n; i++) {
