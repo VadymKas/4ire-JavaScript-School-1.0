@@ -12,4 +12,15 @@ let filterBy = (arr, selector) => {
   return newArray;
 }
 
+
+//example 3
+
+let filterBy = (arr, selector) => {
+  let newArr = [];
+  for (let elem of arr) {
+    if (typeof(elem) != selector) newArr.push(elem);
+  }
+  return newArr;
+}
+
 filterBy(['hello', 'world', 23, '23', null], 'string'); // [23, null]
