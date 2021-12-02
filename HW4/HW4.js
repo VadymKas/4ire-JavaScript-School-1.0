@@ -30,8 +30,7 @@ function randomCity() {
     powerLinesCapacity = +electricityСounting(powerLines, 'capacity', 'capacity', 'flats');
 
   let difference = +(coalPlantProduction + solarPlantProduction - cityHousesComsumption).toFixed(2),
-      temp = Math.abs(difference),
-      money = 0;
+      temp = Math.abs(difference), money = 0, message;
 
   function budget(powerLines) {
     for (let i = 0; i < powerLines.length; i++) {
@@ -39,12 +38,11 @@ function randomCity() {
         money += powerLines[i].capacity * 24 * powerLines[i].price;
         temp -= powerLines[i].capacity * 24;
       } else {
-        money += +(temp * powerLines[i].price).toFixed(2);
-        break;
+        money += temp * powerLines[i].price;
       }
     }
-    (difference > 0) ? console.log(`You can sell unneeded electricity for ${money} $`) 
-                     : console.log(`You have to buy the missing electricity for ${money} $`);
+    (difference > 0) ? message = 'You can sell unneeded electricity for ': message = 'You have to buy the missing electricity for ';
+    return message + money.toFixed(2) + '$';
   }
     console.log(`Coal plants electricity production per day - ${coalPlantProduction} mW`);
     console.log(`Solar plants electricity production per day - ${solarPlantProduction} mW`);
