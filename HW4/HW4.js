@@ -49,5 +49,10 @@ function randomCity() {
     console.log(`City's electricity usage per day - ${cityHousesComsumption} mW`);
     console.log(`Power lines capacity - ${powerLinesCapacity} mW`);
     console.log(budget(powerLines));
+    console.group('Info about created city');
+    console.log(coalPlant);
+    console.log(solarPlant);
+    console.log(cityHouses);
+    console.log(powerLines);
+    console.groupEnd();
   }
-  randomCity();
