@@ -40,6 +40,7 @@ numberButtons.forEach(button => {
         if (button.value.match(/=/)) {   
             console.log(currentNum, previousNum);  
             display.value = (Operators.calc(previousNum, currentNum, operator)).toFixed(6) * 1;
+            currentNum = display.value;
         }
 
         if (button.value.match(/C/)) {
