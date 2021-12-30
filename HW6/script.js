@@ -1,4 +1,4 @@
-function filmView(img, title, year, genres) {
+function filmView(img, title, year, genres, filmDesc) {
     const cont = document.querySelector(".posters");
     const temp = `
             <div class="poster-card">
@@ -9,29 +9,34 @@ function filmView(img, title, year, genres) {
                         <span class="year">${year}</span>
                         <span class="genre">${genres}</span>
                     </div>
-                    <p class="poster-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="poster-description">${filmDesc}</p>
                 </div>
             </div>`;
     cont.insertAdjacentHTML("beforeend", temp);
 }
 
-let promise = fetch(
-    "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1",
-    {
-        method: "GET",
-        headers: {
-            "X-API-KEY": "d59814af-5d62-4b2c-8779-cc5930a36ecb",
-            "Content-Type": "application/json",
-        },
-    }
-);
+function promise(data) {
+    return fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/${data}`,
+        {
+            method: "GET",
+            headers: {
+                "X-API-KEY": "d59814af-5d62-4b2c-8779-cc5930a36ecb",
+                "Content-Type": "application/json",
+            },
+        }
+    )
+}
+let topFilms = `top?type=TOP_250_BEST_FILMS&page=1`;
 
-promise
+promise(topFilms)
     .then((res) => res.json())
     .then((data) => {
-        data.films.map(({ posterUrl, nameRu, year, genres}) => {
-            let genre = genres.map(el => Object.values(el)).toString();
-            filmView(posterUrl, nameRu, year, genre);
-            console.log(data);
+        data.films.map(({filmId}) => {
+            promise(filmId).then((res) => res.json()).then((data) => {
+                let getGenre = data.genres.map(el => Object.values(el)).join(',');
+
+                filmView(data.posterUrl, data.nameRu, data.year, getGenre, data.description)
+            });            
         });
     });
